@@ -11,14 +11,9 @@ import { storiesOf } from '@storybook/vue';
 
 import tooltipbtn from './tooltip-button.vue';
 
-storiesOf('MyButton', module)
+storiesOf('Tooltip', module)
   .add('story as a component', () => ({
     components: { tooltipbtn },
-    data: function () {
-      return {
-
-      }
-    },
     template: `<div class="container">
       <tooltipbtn placement="left"></tooltipbtn>
       <tooltipbtn placement="top"></tooltipbtn>

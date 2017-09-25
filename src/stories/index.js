@@ -8,16 +8,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles.css';
 
 import { storiesOf } from '@storybook/vue';
-
-import tooltipbtn from './tooltip-button.vue';
+import { action } from '@storybook/addon-actions';
+import TooltipBtn from './tooltip-button.vue';
+import { withKnobs, text, number, boolean, array, select, color, date } from '@storybook/addon-knobs';
 
 storiesOf('Tooltip', module)
-  .add('story as a component', () => ({
-    components: { tooltipbtn },
-    template: `<div class="container">
-      <tooltipbtn placement="left"></tooltipbtn>
-      <tooltipbtn placement="top"></tooltipbtn>
-      <tooltipbtn placement="bottom"></tooltipbtn>
-      <tooltipbtn placement="right"></tooltipbtn>
-    </div>`
-  }));
+  .addDecorator(withKnobs)
+  .add('tooltip for button', () => {
+    const caption = text('Caption', 'OK');
+    const placements = {
+      left: 'left',
+      top: 'top',
+      right: 'right',
+      bottom: 'bottom'
+    };
+    const placement = select('Placement', placements, 'top');
+    return {
+    components: { TooltipBtn },
+    template: `
+      <div class="container">
+        <tooltip-btn placement="${placement}" @show="logShow" @shown="logShown" @hide="logHide" @hidden="logHidden">${caption}</tooltip-btn>
+      </div>`,
+    methods: { 
+      logShow: action('show.bs.tooltip'),
+      logShown: action('shown.bs.tooltip'),
+      logHide: action('hide.bs.tooltip'),
+      logHidden: action('hidden.bs.tooltip')
+    }
+  };
+  });

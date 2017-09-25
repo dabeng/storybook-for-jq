@@ -1,6 +1,6 @@
 import { configure } from '@storybook/vue';
 
-import Vue from 'vue';
+// import Vue from 'vue';
 // import Vuex from 'vuex'; // Vue plugins
 
 // Import your custom components.

@@ -23,11 +23,21 @@ storiesOf('Tooltip', module)
       bottom: 'bottom'
     };
     const placement = select('Placement', placements, 'top');
+    const types = {
+      'btn-default': 'Default',
+      'btn-primary': 'Primary',
+      'btn-success': 'Success',
+      'btn-info': 'Info',
+      'btn-warning': 'Warning',
+      'btn-danger': 'Danger'
+    };
+    const type = select('Type', types, 'btn-default');
+
     return {
     components: { TooltipBtn },
     template: `
       <div class="container">
-        <tooltip-btn placement="${placement}" @show="logShow" @shown="logShown" @hide="logHide" @hidden="logHidden">${caption}</tooltip-btn>
+        <tooltip-btn class="${type}" placement="${placement}" @show="logShow" @shown="logShown" @hide="logHide" @hidden="logHidden">${caption}</tooltip-btn>
       </div>`,
     methods: { 
       logShow: action('show.bs.tooltip'),

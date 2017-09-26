@@ -1,5 +1,5 @@
 <template>
-<button type="button" class="btn btn-default" data-toggle="tooltip" :data-placement="placement" :title="tips"  ><slot></slot></button>
+<button type="button" class="btn" data-toggle="tooltip" :data-placement="placement" :title="tips"  ><slot></slot></button>
 </template>
 <script>
 export default {
